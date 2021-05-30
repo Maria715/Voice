@@ -85,6 +85,8 @@ const App = () => {
   }, []);
   return (
     <View style={{flex: 1, alignItems: 'center', backgroundColor:'#ffff',justifyContent: 'center'}}>
+    
+    <Text style={{color:'black', fontSize:20, position:'absolute', top:0, margin:100}}>Voice Recognition React Native</Text>
        <Text style={{color:'black'}}>{voiceLabel}</Text>
 
       <TouchableOpacity
