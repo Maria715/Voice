@@ -60,7 +60,7 @@ const App = () => {
     Voice.onSpeechEnd = onSpeechEnd;
     Voice.onSpeechResults = onSpeechResults;
     Voice.onSpeechError = onSpeechError;
-    console.log("Start",Voice.onSpeechStart)
+    console.log("Stasrt",Voice.onSpeechStart)
 
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
@@ -107,7 +107,7 @@ const App = () => {
           <TouchableOpacity
           style={{position:'absolute',right:0,
           margin:15}}
-      onPress={() => setModalVisible(true)}
+      onPress={() => setModalVisible(false)}
       >
           <Image
         style={{
