@@ -124,7 +124,7 @@ const App = () => {
           <TouchableOpacity
           style={{position:'absolute',right:0,
           margin:15}}
-      onPress={() => setModalVisible(true)}
+      onPress={() => setModalVisible(false)}
       >
           <Image
         style={{
