@@ -53,13 +53,9 @@ const App = () => {
   };
 
 
-  const onSpeechRecognized = (event) => {
-    console.log('onSpeechRecognized 1111');
-    console.log(event);
-  };
 
   const onSpeechPartialResults = (event) => {
-    //console.log('onSpeechPartialResults 2222');
+   
     console.log(event.value[0]);
     setText(event.value[0]);
     
@@ -86,24 +82,21 @@ const App = () => {
   return (
     <View style={{flex: 1, alignItems: 'center', backgroundColor:'#ffff',justifyContent: 'center'}}>
     
-    <Text style={{color:'black', fontSize:20, position:'absolute', top:0, margin:100}}>Voice Recognition React Native</Text>
+    <Text style={{color:'black', fontSize:20, position:'absolute', top:0, marginTop:80, fontWeight:'bold'}}>Voice Recognition React Native</Text>
        <Text style={{color:'black'}}>{voiceLabel}</Text>
 
       <TouchableOpacity
       onPress={() => setModalVisible(true)}
         
         style={{
-          // backgroundColor: 'red',
-          marginTop:10
-          // width: 80,
-          // height: 30,
-          // alignItems: 'center',
-          // justifyContent: 'center',
-          // borderRadius: 10,
+          
+          marginTop:10,
+         
         }}>
-        {/* <Text>{buttonLabel}</Text> */}
+       
         <Image
-        style={{}}
+        style={{ width: 50,
+          height: 50,}}
         source={require('./src/Images/mic.png')}
       />
       </TouchableOpacity>
@@ -173,31 +166,28 @@ const styles = StyleSheet.create({
    // justifyContent: "center",
     alignItems: "center",
     //marginTop: 22
+    
+    
    
    
   },
   modalView: {
     //margin: 20,
+    
     backgroundColor: "#3FB65F",
    borderRadius: 10,
-  
-   maxHeight:'95%',
-   height:'30%',
+   maxHeight:'100%',
+   
     padding: 35,
+  
+    paddingBottom:100,
     borderBottomRightRadius:0,
     borderBottomLeftRadius:0,
     width:'100%',
     bottom:0,
     position:'absolute',
     alignItems: "center",
-    // shadowColor: "#000",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 2
-    // },
-    // shadowOpacity: 0.25,
-   // shadowRadius: 4,
-   // elevation: 5
+ 
   },
   button: {
     borderRadius: 20,
