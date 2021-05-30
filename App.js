@@ -9,29 +9,26 @@ const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [text, setText] = useState('');
   const buttonLabel = isRecord ? 'Stop' : 'Start';
-  // const voiceLabel = text
-  //   ? text
-  //   : isRecord
-  //   ? 'Say something...'
-  //   : 'Press Start button';
+  
     const voiceLabel = text
     ? text
     : isRecord
     ? ''
     : '';
-    const voiceButtonText = text
-    ? text
-      : isRecord
-       ? 'Say something...'
-       : 'Press Start button';
 
-  const onSpeechStart = () => {
+    const voiceButtonText = (text === '' && !isRecord) ? 
+    'Press Start Button'
+    :(text === '' && isRecord) ?
+    'Say something...'
+    :(text !== '' && isRecord) ?
+    'Press Stop Button' : 'Press Start Button'
+
+  const onSpeechStart = (event) => {
     console.log('onSpeechStart');
     setText('');
   };
   const onSpeechEnd = () => {
-
-
+    setIsRecord(false)
     console.log('onSpeechEnd');
   };
   const onSpeechResults = (event) => {
@@ -55,12 +52,32 @@ const App = () => {
     setIsRecord(!isRecord);
   };
 
+
+  const onSpeechRecognized = (event) => {
+    console.log('onSpeechRecognized 1111');
+    console.log(event);
+  };
+
+  const onSpeechPartialResults = (event) => {
+    //console.log('onSpeechPartialResults 2222');
+    console.log(event.value[0]);
+    setText(event.value[0]);
+    
+  };
+
+  const onSpeechVolumeChanged = (event) => {
+    //console.log('onSpeechVolumeChanged 3333');
+    //console.log(event.value);
+  };
+
+
   useEffect(() => {
     Voice.onSpeechStart = onSpeechStart;
     Voice.onSpeechEnd = onSpeechEnd;
     Voice.onSpeechResults = onSpeechResults;
     Voice.onSpeechError = onSpeechError;
-    console.log("Stasrt",Voice.onSpeechStart)
+    Voice.onSpeechPartialResults = onSpeechPartialResults;
+    Voice.onSpeechVolumeChanged = onSpeechVolumeChanged
 
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
@@ -107,13 +124,13 @@ const App = () => {
           <TouchableOpacity
           style={{position:'absolute',right:0,
           margin:15}}
-      onPress={() => setModalVisible(false)}
+      onPress={() => setModalVisible(true)}
       >
           <Image
         style={{
           // alignSelf:'flex-end',
-          
-        height:30, width:30}}
+          tintColor:'white',
+        height:20, width:20}}
         source={require('./src/Images/close.png')}
       />
       </TouchableOpacity>
@@ -131,6 +148,7 @@ const App = () => {
         <Text style={{color:'#ffff', marginBottom:10}}>{buttonLabel}</Text>
         <Image
         style={{}}
+        tintColor='white'
         source={require('./src/Images/mic.png')}
       />
       </TouchableOpacity>
