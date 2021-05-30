@@ -60,6 +60,7 @@ const App = () => {
     Voice.onSpeechEnd = onSpeechEnd;
     Voice.onSpeechResults = onSpeechResults;
     Voice.onSpeechError = onSpeechError;
+    console.log("Start",Voice.onSpeechStart)
 
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
